@@ -1,0 +1,45 @@
+{
+  "name": "@naturalcycles/bench-lib",
+  "scripts": {},
+  "dependencies": {
+    "@naturalcycles/js-lib": "^13.0.0",
+    "@naturalcycles/nodejs-lib": "^10.2.1",
+    "autocannon": "^4.6.0",
+    "benchmark": "^2.1.4",
+    "express": "^4.17.1",
+    "fs-extra": "^9.0.0",
+    "vega": "^5.10.1",
+    "vega-lite": "^4.11.0"
+  },
+  "devDependencies": {
+    "@naturalcycles/dev-lib": "^10.14.12",
+    "@types/benchmark": "^1.0.31",
+    "@types/express": "^4.17.6",
+    "@types/node": "^13.13.2",
+    "jest": "^25.4.0"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!src/test",
+    "!src/**/*.test.ts",
+    "!src/**/__snapshots__",
+    "!src/**/__exclude"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NaturalCycles/bench-lib"
+  },
+  "engines": {
+    "node": ">=12.13.1"
+  },
+  "version": "0.0.0",
+  "description": "Benchmarking library, based on Benchmark.js and Autocannon",
+  "author": "Natural Cycles Team",
+  "license": "MIT"
+}
