@@ -58,7 +58,7 @@ async function runCannonProfile(
     host = 'http://localhost',
     renderProgressBar = true,
     renderResultsTable = true,
-    renderLatencyTable = true,
+    renderLatencyTable = false,
     silent,
     verbose,
   } = opt

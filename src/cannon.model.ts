@@ -44,7 +44,7 @@ export interface RunCannonOptions {
   renderProgressBar?: boolean
 
   /**
-   * @default true
+   * @default false
    */
   renderLatencyTable?: boolean
 

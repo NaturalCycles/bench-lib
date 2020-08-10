@@ -3,8 +3,8 @@
   "scripts": {},
   "dependencies": {
     "@naturalcycles/js-lib": "^13.0.0",
-    "@naturalcycles/nodejs-lib": "^10.2.1",
-    "autocannon": "^4.6.0",
+    "@naturalcycles/nodejs-lib": "^11.0.0",
+    "autocannon": "^6.0.0",
     "benchmark": "^2.1.4",
     "express": "^4.17.1",
     "fs-extra": "^9.0.0",
@@ -15,8 +15,8 @@
     "@naturalcycles/dev-lib": "^10.14.12",
     "@types/benchmark": "^1.0.31",
     "@types/express": "^4.17.6",
-    "@types/node": "^13.13.2",
-    "jest": "^25.4.0"
+    "@types/node": "^14.0.27",
+    "jest": "^26.3.0"
   },
   "files": [
     "dist",
