@@ -717,6 +717,11 @@
   resolved "https://registry.yarnpkg.com/@naturalcycles/js-lib/-/js-lib-13.2.1.tgz#a698843097bdb47baf4bf98b957a837437604471"
   integrity sha512-yWH2vqc/ivlCxLadPHl1F+oyUlcd2bt1hUk7xg0o15s4D1cKHxc9v2iafE0twqS6LOohtIQuorQxQ/LESBhOTA==
 
+"@naturalcycles/js-lib@^14.0.0":
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/@naturalcycles/js-lib/-/js-lib-14.0.0.tgz#911aef606dbcab4e89b8461678eea030a25bc444"
+  integrity sha512-zqSeLpaswNrhKDI2R5nlrTfehCEuXfonon44VDvFgBiHecA260CUJg2klzr8wyEuMi1nzsQBlsxpcnTNaERg/w==
+
 "@naturalcycles/nodejs-lib@^11.0.0":
   version "11.0.0"
   resolved "https://registry.yarnpkg.com/@naturalcycles/nodejs-lib/-/nodejs-lib-11.0.0.tgz#093b663eb7a8419655e99010e7f0b718ab024c91"
