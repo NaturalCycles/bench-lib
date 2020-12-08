@@ -74,7 +74,7 @@ async function runCannonProfile(
 
   const autocannon = require('autocannon')
   const server = await serverFactory()
-  await new Promise(resolve => server.listen(0, resolve))
+  await new Promise<void>(resolve => server.listen(0, resolve))
   const { port } = server.address() as AddressInfo
   const url = `${host}:${port}`
 

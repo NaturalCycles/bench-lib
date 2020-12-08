@@ -17,7 +17,7 @@ void runBench({
       setTimeout(() => done.resolve(), 0)
     },
     asyncAwait: async done => {
-      await new Promise(resolve => resolve())
+      await new Promise<void>(resolve => resolve())
       done.resolve()
     },
     immediate: done => {

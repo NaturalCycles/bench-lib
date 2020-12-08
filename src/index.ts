@@ -15,17 +15,20 @@ import {
 } from './cannon.profiles'
 import { runCannon } from './cannon.util'
 
-export {
-  runBench,
+export type {
   RunBenchOptions,
   BenchDeferredFunction,
-  benchNoopFn,
   HertzMap,
-  runCannon,
   HttpServerFactory,
   RunCannonOptions,
   AutocannonSummary,
   AutocannonResult,
+}
+
+export {
+  runBench,
+  benchNoopFn,
+  runCannon,
   bareNodeServerFactory,
   bareExpressServerFactory,
   expressWithMiddlewaresServerFactory,

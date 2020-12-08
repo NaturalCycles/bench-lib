@@ -42,7 +42,7 @@ runScript(async () => {
         setImmediate(() => done.resolve())
       },
       asyncAwait: async done => {
-        await new Promise(resolve => resolve())
+        await new Promise<void>(resolve => resolve())
         done.resolve()
       },
     },

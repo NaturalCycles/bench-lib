@@ -25,11 +25,11 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
   }
 
   const avg: HertzMap = {}
-  Object.keys(results[0]).forEach(name => {
+  Object.keys(results[0]!).forEach(name => {
     let total = 0
     results.forEach(map => (total += map[name]!))
     avg[name] = total / runs
-    if (avg[name] > 2) avg[name] = Math.round(avg[name])
+    if (avg[name]! > 2) avg[name] = Math.round(avg[name]!)
   })
 
   console.log('\n\n')
@@ -87,7 +87,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
   const fnNames = Object.keys(opt.fns || {})
   if (run % 2 === 0) fnNames.reverse()
   fnNames.forEach(name => {
-    suite.add(opt.fns![name], {
+    suite.add(opt.fns![name]!, {
       defer: true,
       name,
     })
