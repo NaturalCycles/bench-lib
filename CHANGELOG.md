@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/NaturalCycles/bench-lib/compare/v1.0.3...v1.0.4) (2020-12-08)
+
+
+### Bug Fixes
+
+* modernize ([57c5f69](https://github.com/NaturalCycles/bench-lib/commit/57c5f69fbf96c96615356a985d9d94f6a89409a2))
+
 ## [1.0.3](https://github.com/NaturalCycles/bench-lib/compare/v1.0.2...v1.0.3) (2020-09-21)
 
 
