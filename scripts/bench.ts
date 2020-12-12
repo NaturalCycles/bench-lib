@@ -51,10 +51,6 @@ runScript(async () => {
     writeSummary: true,
   })
 
-  // todo: create a graph over summary? using vega-lite
-
-  // todo: readme with usage and sample graph
-
   console.log(r)
   // console.table(r)
 })
