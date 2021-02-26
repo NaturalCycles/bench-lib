@@ -9,7 +9,7 @@
     "express": "^4.17.1",
     "fs-extra": "^9.0.0",
     "vega": "^5.10.1",
-    "vega-lite": "^4.11.0"
+    "vega-lite": "^5.0.0"
   },
   "devDependencies": {
     "@naturalcycles/dev-lib": "^10.14.12",
