@@ -4,7 +4,6 @@ yarn tsn bench
 
  */
 
-import { _randomInt } from '@naturalcycles/js-lib'
 import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
 import { runBench } from '../src/bench.util'
 

@@ -15,6 +15,7 @@ export interface RunBenchOptions {
 
   /**
    * Name of this benchmark.
+   *
    * @default runBench
    */
   name?: string

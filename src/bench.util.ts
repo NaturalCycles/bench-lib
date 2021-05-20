@@ -70,6 +70,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
       // console.log(event.target)
     })
     .on('complete', function (this: Suite) {
+      // eslint-disable-next-line unicorn/no-array-callback-reference
       console.log(`Fastest in run ${yellow(run)} is ` + this.filter('fastest').map('name' as any))
       // console.log(this[0].stats)
       // console.log(this)

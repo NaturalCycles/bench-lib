@@ -12,12 +12,14 @@ export interface RunCannonOptions {
 
   /**
    * seconds
+   *
    * @default 40
    */
   duration?: number
 
   /**
    * seconds
+   *
    * @default 3
    */
   cooldown?: number
@@ -50,6 +52,7 @@ export interface RunCannonOptions {
 
   /**
    * Name of this benchmark.
+   *
    * @default runCannon
    */
   name?: string
