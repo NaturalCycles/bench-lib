@@ -1,3 +1,10 @@
+## [1.0.7](https://github.com/NaturalCycles/bench-lib/compare/v1.0.6...v1.0.7) (2021-05-20)
+
+
+### Bug Fixes
+
+* deps, eslint ([f10baaf](https://github.com/NaturalCycles/bench-lib/commit/f10baaf8cbf30ba81ab36dad48f648969e0a08d3))
+
 ## [1.0.6](https://github.com/NaturalCycles/bench-lib/compare/v1.0.5...v1.0.6) (2021-02-26)
 
 
