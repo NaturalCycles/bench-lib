@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/NaturalCycles/bench-lib/compare/v1.2.0...v1.3.0) (2021-08-15)
+
+
+### Features
+
+* writeRawSummary option (default to true) ([93c4b35](https://github.com/NaturalCycles/bench-lib/commit/93c4b35cf303e2d69c5130e9bd1e15f221a76143))
+
 # [1.2.0](https://github.com/NaturalCycles/bench-lib/compare/v1.1.0...v1.2.0) (2021-08-15)
 
 
