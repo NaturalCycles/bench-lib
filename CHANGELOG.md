@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/NaturalCycles/bench-lib/compare/v1.3.0...v1.4.0) (2021-08-15)
+
+
+### Features
+
+* allow to add a `path` to autocannon url ([2193343](https://github.com/NaturalCycles/bench-lib/commit/2193343c065a28dc1b4c335384824b26b2371e8a))
+
 # [1.3.0](https://github.com/NaturalCycles/bench-lib/compare/v1.2.0...v1.3.0) (2021-08-15)
 
 
