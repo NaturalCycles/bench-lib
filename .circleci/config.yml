@@ -23,13 +23,3 @@ workflows:
               only: master
       - tools/build-job
       - tools/test-job
-
-  nightly-workflow:
-    triggers:
-      - schedule:
-          cron: '0 4 * * *' # 04:00 every day
-          filters:
-            branches:
-              only: master
-    jobs:
-      - tools/nightly-job

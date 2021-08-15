@@ -23,7 +23,29 @@ export async function runCannon(
     reportDirPath: `./tmp/${optInput.name || 'Benchmark'}`,
     writePlots: true,
     writeSummary: true,
+    runs: 2,
+    connections: 100,
+    pipelining: 10,
+    duration: 40,
+    cooldown: 3,
+    host: 'http://localhost',
+    renderProgressBar: true,
+    renderResultsTable: true,
+    renderLatencyTable: false,
     ...optInput,
+  }
+  if (opt.silent) {
+    Object.assign(opt, {
+      renderProgressBar: false,
+      renderResultsTable: false,
+      renderLatencyTable: false,
+    })
+  } else if (opt.verbose) {
+    Object.assign(opt, {
+      renderProgressBar: true,
+      renderResultsTable: true,
+      renderLatencyTable: true,
+    })
   }
 
   const { reportDirPath } = opt
@@ -59,30 +81,20 @@ export async function runCannon(
 async function runCannonProfile(
   profileName: string,
   serverFactory: HttpServerFactory,
-  opt: RunCannonOptions = {},
+  opt: RunCannonNormalizedOptions,
 ): Promise<AutocannonResult> {
-  let {
-    runs = 2,
-    connections = 100,
-    pipelining = 10,
-    duration = 40,
-    cooldown = 3,
-    host = 'http://localhost',
-    renderProgressBar = true,
-    renderResultsTable = true,
-    renderLatencyTable = false,
+  const {
+    runs,
+    connections,
+    pipelining,
+    duration,
+    cooldown,
+    host,
+    renderProgressBar,
+    renderResultsTable,
+    renderLatencyTable,
     silent,
-    verbose,
   } = opt
-  if (silent) {
-    renderProgressBar = false
-    renderResultsTable = false
-    renderLatencyTable = false
-  } else if (verbose) {
-    renderProgressBar = true
-    renderResultsTable = true
-    renderLatencyTable = true
-  }
 
   const autocannon = require('autocannon')
   const server = await serverFactory()
@@ -103,6 +115,7 @@ async function runCannonProfile(
         connections,
         pipelining,
         duration,
+        ...opt.autocannonOptions,
       },
       (err: any, result: AutocannonResult) => {
         if (err) return doneDefer.reject(err)
@@ -142,6 +155,8 @@ function toSummary(name: string, result: AutocannonResult): AutocannonSummary {
     throughputAvg: Number((result.throughput.average / 1024 / 1024).toFixed(2)),
     errors: result.errors,
     timeouts: result.timeouts,
+    non2xx: result.non2xx,
+    '2xx': result['2xx'],
   }
 }
 

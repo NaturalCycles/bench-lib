@@ -2,9 +2,22 @@ import type * as http from 'http'
 
 export type HttpServerFactory = () => Promise<http.Server>
 
+export interface AutocannonOptions {
+  body?: string | Buffer
+  method?: string // GET
+  headers?: Record<any, any>
+  expectBody?: string
+}
+
 export interface RunCannonNormalizedOptions extends RunCannonOptions {
   name: string
   reportDirPath: string
+  runs: number
+  connections: number
+  pipelining: number
+  duration: number
+  cooldown: number
+  host: string
 }
 
 export interface RunCannonOptions {
@@ -97,6 +110,11 @@ export interface RunCannonOptions {
    * Text to be included in the markdown file AFTER the plots.
    */
   afterText?: string
+
+  /**
+   * Will be passed to autocannon directly
+   */
+  autocannonOptions?: AutocannonOptions
 }
 
 export interface AutocannonSummary {
@@ -109,6 +127,8 @@ export interface AutocannonSummary {
   throughputAvg: number
   errors: number
   timeouts: number
+  non2xx: number
+  '2xx': number
 }
 
 export interface AutocannonResult {
@@ -132,4 +152,6 @@ export interface AutocannonResult {
   }
   errors: number
   timeouts: number
+  non2xx: number
+  '2xx': number
 }
