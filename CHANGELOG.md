@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/NaturalCycles/bench-lib/compare/v1.0.7...v1.1.0) (2021-08-15)
+
+
+### Features
+
+* runCannot options/improvements ([06f3653](https://github.com/NaturalCycles/bench-lib/commit/06f3653dbb2fc9daa515c59de582c07b4ee63a42))
+
 ## [1.0.7](https://github.com/NaturalCycles/bench-lib/compare/v1.0.6...v1.0.7) (2021-05-20)
 
 
