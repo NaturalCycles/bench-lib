@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/NaturalCycles/bench-lib/compare/v1.1.0...v1.2.0) (2021-08-15)
+
+
+### Features
+
+* support autocannonOptions ([04f723b](https://github.com/NaturalCycles/bench-lib/commit/04f723b83ae8a14ba104e7f7b53d38f874579ac5))
+
 # [1.1.0](https://github.com/NaturalCycles/bench-lib/compare/v1.0.7...v1.1.0) (2021-08-15)
 
 
