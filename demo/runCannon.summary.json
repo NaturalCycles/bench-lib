@@ -1,34 +1,25 @@
 [
   {
     "name": "noop",
-    "rpsAvg": 31603.2,
-    "latencyAvg": 3.13,
-    "latency50": 0,
-    "latency90": 1,
-    "latency99": 33,
-    "throughputAvg": 5.21,
+    "rpsAvg": 10088,
+    "latencyAvg": 97.47,
+    "throughputAvg": 1.66,
     "errors": 0,
     "timeouts": 0
   },
   {
     "name": "async",
-    "rpsAvg": 26502.4,
-    "latencyAvg": 3.77,
-    "latency50": 0,
-    "latency90": 16,
-    "latency99": 41,
-    "throughputAvg": 4.37,
+    "rpsAvg": 10372,
+    "latencyAvg": 96.65,
+    "throughputAvg": 1.71,
     "errors": 0,
     "timeouts": 0
   },
   {
     "name": "random",
-    "rpsAvg": 32092,
-    "latencyAvg": 3.08,
-    "latency50": 0,
-    "latency90": 0,
-    "latency99": 33,
-    "throughputAvg": 5.21,
+    "rpsAvg": 11084,
+    "latencyAvg": 90.88,
+    "throughputAvg": 1.8,
     "errors": 0,
     "timeouts": 0
   }

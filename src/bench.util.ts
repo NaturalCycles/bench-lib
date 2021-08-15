@@ -40,21 +40,21 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     //   summary[name] = results.hz.map(map => map[name]!)
     // })
 
-    await fs.ensureDir(reportDirPath)
+    fs.ensureDirSync(reportDirPath)
     const summaryJsonPath = `${reportDirPath}/${name}.json`
-    await fs.writeJson(summaryJsonPath, avg, { spaces: 2 })
+    fs.writeJsonSync(summaryJsonPath, avg, { spaces: 2 })
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
   }
 
   if (writePlot) {
-    await fs.ensureDir(reportDirPath)
+    fs.ensureDirSync(reportDirPath)
 
     const spec = benchResultsToVegaSpec(avg)
     const view = new vega.View(vega.parse(spec), { renderer: 'none' })
     const svg = await view.toSVG()
 
     const plotPath = `${reportDirPath}/${name}.svg`
-    await fs.writeFile(plotPath, svg)
+    fs.writeFileSync(plotPath, svg)
     console.log(`saved ${dimGrey(plotPath)}`)
   }
 

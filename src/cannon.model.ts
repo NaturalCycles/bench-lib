@@ -2,11 +2,17 @@ import type * as http from 'http'
 
 export type HttpServerFactory = () => Promise<http.Server>
 
+export interface RunCannonNormalizedOptions extends RunCannonOptions {
+  name: string
+  reportDirPath: string
+}
+
 export interface RunCannonOptions {
   /**
    * @default 2
    */
   runs?: number
+
   connections?: number
   pipelining?: number
 
@@ -74,6 +80,23 @@ export interface RunCannonOptions {
    * Will write to ${reportDirPath}/${name}.${plotName}.svg
    */
   writePlots?: boolean
+
+  /**
+   * Pass true to include latency50,90,99
+   *
+   * @default false
+   */
+  includeLatencyPercentiles?: boolean
+
+  /**
+   * Text to be included in the markdown file BEFORE the plots.
+   */
+  beforeText?: string
+
+  /**
+   * Text to be included in the markdown file AFTER the plots.
+   */
+  afterText?: string
 }
 
 export interface AutocannonSummary {

@@ -1,4 +1,4 @@
-import { pDefer, pDelay, pMap, StringMap, _range } from '@naturalcycles/js-lib'
+import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
 import { boldRed, dimGrey, yellow } from '@naturalcycles/nodejs-lib/dist/colors'
 import * as fs from 'fs-extra'
 import type { AddressInfo } from 'net'
@@ -10,35 +10,47 @@ import type {
   AutocannonResult,
   AutocannonSummary,
   HttpServerFactory,
+  RunCannonNormalizedOptions,
   RunCannonOptions,
 } from './cannon.model'
 
 export async function runCannon(
   profiles: StringMap<HttpServerFactory>,
-  opt: RunCannonOptions = {},
+  optInput: RunCannonOptions = {},
 ): Promise<AutocannonSummary[]> {
-  const { name = 'runCannon', writeSummary = true, writePlots = true } = opt
-  const { reportDirPath = `./tmp/${name}` } = opt
+  const opt: RunCannonNormalizedOptions = {
+    name: 'Benchmark',
+    reportDirPath: `./tmp/${optInput.name || 'Benchmark'}`,
+    writePlots: true,
+    writeSummary: true,
+    ...optInput,
+  }
+
+  const { reportDirPath } = opt
 
   const resultByProfile: StringMap<AutocannonResult> = {}
   const summaries: AutocannonSummary[] = []
 
   for await (const profileName of Object.keys(profiles)) {
     resultByProfile[profileName] = await runCannonProfile(profileName, profiles[profileName]!, opt)
-    summaries.push(toSummary(profileName, resultByProfile[profileName]!))
+    const summary = toSummary(profileName, resultByProfile[profileName]!)
+    if (!opt.includeLatencyPercentiles) {
+      _omit(summary, ['latency50', 'latency90', 'latency99'], true)
+    }
+    summaries.push(summary)
   }
 
   console.table(summaries)
 
-  if (writeSummary) {
-    const summaryJsonPath = `${reportDirPath}/${name}.summary.json`
-    await fs.ensureDir(reportDirPath)
-    await fs.writeJson(summaryJsonPath, summaries, { spaces: 2 })
+  if (opt.writeSummary) {
+    const summaryJsonPath = `${reportDirPath}/${opt.name}.summary.json`
+    fs.ensureDirSync(reportDirPath)
+    fs.writeJsonSync(summaryJsonPath, summaries, { spaces: 2 })
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
   }
 
-  if (writePlots) {
-    await writePlotFiles(reportDirPath, name, summaries)
+  if (opt.writePlots) {
+    await writePlotFiles(opt, summaries)
   }
 
   return summaries
@@ -134,12 +146,18 @@ function toSummary(name: string, result: AutocannonResult): AutocannonSummary {
 }
 
 async function writePlotFiles(
-  reportDirPath: string,
-  name: string,
+  opt: RunCannonNormalizedOptions,
   summaries: AutocannonSummary[],
 ): Promise<void> {
-  await fs.ensureDir(reportDirPath)
-  const specs = autocannonSummaryToVegaSpecs(summaries)
+  const { reportDirPath, name } = opt
+  fs.ensureDirSync(reportDirPath)
+
+  let fields = ['rpsAvg', 'latencyAvg', 'latency50', 'latency90', 'latency99', 'throughputAvg']
+  if (!opt.includeLatencyPercentiles) {
+    fields = fields.filter(f => !f.startsWith('latency') || f === 'latencyAvg')
+  }
+
+  const specs = autocannonSummaryToVegaSpecs(fields, summaries)
 
   await pMap(Object.keys(specs), async specName => {
     // create a new view instance for a given Vega JSON spec
@@ -149,15 +167,17 @@ async function writePlotFiles(
     const svg = await view.toSVG()
     // console.log(svg)
 
-    await fs.writeFile(`${reportDirPath}/${name}.${specName}.svg`, svg)
+    fs.writeFileSync(`${reportDirPath}/${name}.${specName}.svg`, svg)
   })
 
-  await fs.writeFile(`${reportDirPath}/${name}.md`, mdContent(name, Object.keys(specs)))
+  fs.writeFileSync(`${reportDirPath}/${name}.md`, mdContent(opt, Object.keys(specs)))
 }
 
-function autocannonSummaryToVegaSpecs(summaries: AutocannonSummary[]): StringMap<Spec> {
+function autocannonSummaryToVegaSpecs(
+  fields: string[],
+  summaries: AutocannonSummary[],
+): StringMap<Spec> {
   // console.log(summary)
-  const fields = ['rpsAvg', 'latencyAvg', 'latency50', 'latency90', 'latency99', 'throughputAvg']
 
   const specs: StringMap<Spec> = {}
 
@@ -194,6 +214,13 @@ function autocannonSummaryToVegaSpecs(summaries: AutocannonSummary[]): StringMap
   return specs
 }
 
-function mdContent(name: string, specNames: string[]): string {
-  return [`# ${name}\n`, ...specNames.map(specName => `![](./${name}.${specName}.svg)`)].join('\n')
+function mdContent(opt: RunCannonNormalizedOptions, specNames: string[]): string {
+  return [
+    `# ${opt.name}`,
+    opt.beforeText,
+    specNames.map(specName => `![](./${opt.name}.${specName}.svg)`).join('\n'),
+    opt.afterText,
+  ]
+    .filter(Boolean)
+    .join('\n\n')
 }
