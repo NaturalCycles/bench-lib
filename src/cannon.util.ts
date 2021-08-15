@@ -23,6 +23,7 @@ export async function runCannon(
     reportDirPath: `./tmp/${optInput.name || 'Benchmark'}`,
     writePlots: true,
     writeSummary: true,
+    writeRawSummary: true,
     runs: 2,
     connections: 100,
     pipelining: 10,
@@ -49,6 +50,7 @@ export async function runCannon(
   }
 
   const { reportDirPath } = opt
+  fs.ensureDirSync(reportDirPath)
 
   const resultByProfile: StringMap<AutocannonResult> = {}
   const summaries: AutocannonSummary[] = []
@@ -66,9 +68,12 @@ export async function runCannon(
 
   if (opt.writeSummary) {
     const summaryJsonPath = `${reportDirPath}/${opt.name}.summary.json`
-    fs.ensureDirSync(reportDirPath)
     fs.writeJsonSync(summaryJsonPath, summaries, { spaces: 2 })
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
+  }
+
+  if (opt.writeRawSummary) {
+    fs.writeJsonSync(`${reportDirPath}/${opt.name}.rawSummary.json`, resultByProfile, { spaces: 2 })
   }
 
   if (opt.writePlots) {

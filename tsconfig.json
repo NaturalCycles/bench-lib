@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "lib": ["es2019", "dom"],
+    "sourceMap": true,
     "skipLibCheck": true
   },
   "include": ["src"],

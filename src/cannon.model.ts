@@ -82,17 +82,27 @@ export interface RunCannonOptions {
   reportDirPath?: string
 
   /**
-   * @default true
    * Set false to disable writing summary file.
    * Will write to ${reportDirPath}/${name}.summary.json
+   *
+   * @default true
    */
   writeSummary?: boolean
 
   /**
-   * @default true
    * Will write to ${reportDirPath}/${name}.${plotName}.svg
+   *
+   * @default true
    */
   writePlots?: boolean
+
+  /**
+   * Will write to ${reportDirPath}/${name}.${rawSummary}.json
+   * It is a raw summary from Autocannon.
+   *
+   * @default true
+   */
+  writeRawSummary?: boolean
 
   /**
    * Pass true to include latency50,90,99

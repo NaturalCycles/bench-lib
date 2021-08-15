@@ -12,7 +12,7 @@ import { runCannon } from '../src'
 runScript(async () => {
   await runCannon(
     {
-      '02-ajv': async () => {
+      '01-post': async () => {
         const app = express()
         app.disable('etag')
         app.disable('x-powered-by')
