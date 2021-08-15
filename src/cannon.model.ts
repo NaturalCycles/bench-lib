@@ -18,6 +18,7 @@ export interface RunCannonNormalizedOptions extends RunCannonOptions {
   duration: number
   cooldown: number
   host: string
+  path: string
 }
 
 export interface RunCannonOptions {
@@ -125,6 +126,19 @@ export interface RunCannonOptions {
    * Will be passed to autocannon directly
    */
   autocannonOptions?: AutocannonOptions
+
+  /**
+   * Path to add to url.
+   * E.g url can be http://localhost:randomPort
+   *
+   * path: `/hello` will turn it into:
+   * http://localhost:randomPort/hello
+   *
+   * Should start with slash!
+   *
+   * @default ''
+   */
+  path?: string
 }
 
 export interface AutocannonSummary {

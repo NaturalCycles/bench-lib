@@ -16,7 +16,7 @@ runScript(async () => {
         const app = express()
         app.disable('etag')
         app.disable('x-powered-by')
-        app.post('/', (req, res) => res.json({ ok: true }))
+        app.post('/hello', (req, res) => res.json({ ok: true }))
         return http.createServer(app)
       },
     },
@@ -24,7 +24,7 @@ runScript(async () => {
       runs: 1,
       duration: 2,
       cooldown: 1,
-      renderLatencyTable: false,
+      path: '/hello',
       autocannonOptions: {
         method: 'POST',
         body: JSON.stringify({ hello: 'world' }),

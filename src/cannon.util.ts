@@ -33,6 +33,7 @@ export async function runCannon(
     renderProgressBar: true,
     renderResultsTable: true,
     renderLatencyTable: false,
+    path: '',
     ...optInput,
   }
   if (opt.silent) {
@@ -105,7 +106,7 @@ async function runCannonProfile(
   const server = await serverFactory()
   await new Promise<void>(resolve => server.listen(0, resolve))
   const { port } = server.address() as AddressInfo
-  const url = `${host}:${port}`
+  const url = `${host}:${port}${opt.path}`
 
   let finalResult: AutocannonResult = undefined as any
 

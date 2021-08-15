@@ -22,9 +22,6 @@ void runCannon(
     // duration: 10,
     duration: 2,
     cooldown: 1,
-    // silent: true,
     reportDirPath: './demo',
-    // renderResultsTable: false,
-    renderLatencyTable: false,
   },
 )
