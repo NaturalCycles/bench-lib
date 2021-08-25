@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/NaturalCycles/bench-lib/compare/v1.4.0...v1.5.0) (2021-08-25)
+
+
+### Features
+
+* improvements ([9757eb9](https://github.com/NaturalCycles/bench-lib/commit/9757eb90c55fa8ec793d820de924dbbc82036c47))
+
 # [1.4.0](https://github.com/NaturalCycles/bench-lib/compare/v1.3.0...v1.4.0) (2021-08-15)
 
 
