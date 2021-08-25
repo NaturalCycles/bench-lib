@@ -7,13 +7,20 @@ import * as vega from 'vega'
 import type { Spec } from 'vega'
 import * as vegaLite from 'vega-lite'
 import type { TopLevelSpec } from 'vega-lite'
+import { plotAsciiChart } from './asciiChart.util'
 import type { HertzMap, RunBenchOptions } from './bench.model'
 
 /**
  * Only DeferredFunctions are allowed, because of: https://github.com/bestiejs/benchmark.js/issues/111
  */
 export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
-  const { runs = 1, writeSummary = false, writePlot = false, name = 'runBench' } = opt
+  const {
+    runs = 1,
+    writeSummary = true,
+    writePlot = true,
+    asciiPlot = false,
+    name = 'runBench',
+  } = opt
   const { reportDirPath = `./tmp/${name}` } = opt
 
   console.log('\n\n')
@@ -56,6 +63,10 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     const plotPath = `${reportDirPath}/${name}.svg`
     fs.writeFileSync(plotPath, svg)
     console.log(`saved ${dimGrey(plotPath)}`)
+  }
+
+  if (asciiPlot) {
+    console.log('\n' + plotAsciiChart(avg))
   }
 
   return avg

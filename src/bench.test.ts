@@ -4,7 +4,7 @@ import { tmpDir } from './test/paths.cnst'
 
 test('runBench', async () => {
   const reportDirPath = `${tmpDir}/benchTest`
-  await fs.emptyDir(reportDirPath)
+  fs.emptyDirSync(reportDirPath)
 
   const r = await runBench({
     fns: {

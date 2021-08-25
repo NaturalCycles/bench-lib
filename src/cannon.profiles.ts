@@ -51,3 +51,13 @@ export function expressFunctionFactory(fn: () => any): HttpServerFactory {
     return http.createServer(app)
   }
 }
+
+export function expressSyncFunctionFactory(fn: () => any): HttpServerFactory {
+  return async () => {
+    const app = express()
+    app.disable('etag')
+    app.disable('x-powered-by')
+    app.get('/', (req, res) => res.json(fn()))
+    return http.createServer(app)
+  }
+}

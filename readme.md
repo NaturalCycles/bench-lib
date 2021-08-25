@@ -142,6 +142,5 @@ second) while served from http server (concurrently).
 # Packaging
 
 - `engines.node`: Latest Node.js LTS
-- `main: dist/index.js`: commonjs, es2018
+- `main: dist/index.js`: commonjs, es2020
 - `types: dist/index.d.ts`: typescript types
-- `/src` folder with source `*.ts` files included
