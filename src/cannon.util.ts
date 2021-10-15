@@ -1,7 +1,7 @@
+import type { AddressInfo } from 'net'
 import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
 import { boldRed, dimGrey, yellow } from '@naturalcycles/nodejs-lib/dist/colors'
 import * as fs from 'fs-extra'
-import type { AddressInfo } from 'net'
 import * as vega from 'vega'
 import type { Spec } from 'vega'
 import * as vegaLite from 'vega-lite'
