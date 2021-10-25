@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/NaturalCycles/bench-lib/compare/v1.6.0...v1.6.1) (2021-10-25)
+
+
+### Bug Fixes
+
+* runBenchScript exiting early for 2+ runs ([d7b0d32](https://github.com/NaturalCycles/bench-lib/commit/d7b0d32489b9d689813f055d84df85f43cb29483))
+
 # [1.6.0](https://github.com/NaturalCycles/bench-lib/compare/v1.5.0...v1.6.0) (2021-10-25)
 
 
