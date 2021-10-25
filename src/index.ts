@@ -1,6 +1,6 @@
 import { BenchDeferredFunction, HertzMap, RunBenchOptions } from './bench.model'
 import { benchNoopFn } from './bench.profles'
-import { runBench } from './bench.util'
+import { runBench, runBenchScript } from './bench.util'
 import {
   AutocannonOptions,
   AutocannonResult,
@@ -14,7 +14,7 @@ import {
   expressFunctionFactory,
   expressWithMiddlewaresServerFactory,
 } from './cannon.profiles'
-import { runCannon } from './cannon.util'
+import { runCannon, runCannonScript } from './cannon.util'
 
 export type {
   RunBenchOptions,
@@ -28,9 +28,11 @@ export type {
 }
 
 export {
+  runBenchScript,
   runBench,
   benchNoopFn,
   runCannon,
+  runCannonScript,
   bareNodeServerFactory,
   bareExpressServerFactory,
   expressWithMiddlewaresServerFactory,

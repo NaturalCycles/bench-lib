@@ -5,11 +5,11 @@ yarn tsn startsWith
  */
 
 import { _range } from '@naturalcycles/js-lib'
-import { runBench } from '../src'
+import { runBenchScript } from '../src'
 
 const strings = _range(100).map(String)
 
-void runBench({
+runBenchScript({
   fns: {
     startsWith: done => {
       let _count = 0
@@ -28,5 +28,6 @@ void runBench({
       done.resolve()
     },
   },
-  runs: 2,
+  runs: 1,
+  asciiPlot: true,
 })

@@ -14,6 +14,19 @@ import type {
   RunCannonOptions,
 } from './cannon.model'
 
+/**
+ * Wraps `runBench` in `runScript` for convenience, so it can be run in top-level without `await`.
+ */
+export function runCannonScript(
+  profiles: StringMap<HttpServerFactory>,
+  optInput: RunCannonOptions = {},
+): void {
+  void runCannon(profiles, optInput).catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
+}
+
 export async function runCannon(
   profiles: StringMap<HttpServerFactory>,
   optInput: RunCannonOptions = {},

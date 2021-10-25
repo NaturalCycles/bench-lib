@@ -5,7 +5,6 @@
 
 [![npm](https://img.shields.io/npm/v/@naturalcycles/bench-lib/latest.svg)](https://www.npmjs.com/package/@naturalcycles/bench-lib)
 [![min.gz size](https://badgen.net/bundlephobia/minzip/@naturalcycles/bench-lib)](https://bundlephobia.com/result?p=@naturalcycles/bench-lib)
-[![](https://circleci.com/gh/NaturalCycles/bench-lib.svg?style=shield&circle-token=123)](https://circleci.com/gh/NaturalCycles/bench-lib)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Why
@@ -20,9 +19,9 @@ See examples below!
 # Show me the code 1 (benchmark.js)
 
 ```typescript
-import { runBench } from '@naturalcycles/bench-lib'
+import { runBenchScript } from '@naturalcycles/bench-lib'
 
-runBench({
+runBenchScript({
   fns: {
     noop: done => done.resolve(),
     random: done => {
@@ -124,7 +123,7 @@ Will produce [runCannon.summary.json](./demo/runCannon.json):
 Will produce plots:
 
 ![](./demo/runCannon.rpsAvg.svg) ![](./demo/runCannon.latencyAvg.svg)
-![](./demo/runCannon.latency90.svg) ![](./demo/runCannon.latency99.svg)
+![](./demo/runCannon.latencyAvg.svg) ![](./demo/runCannon.latencyAvg.svg)
 ![](./demo/runCannon.throughputAvg.svg)
 
 # How
@@ -134,13 +133,3 @@ execution (one-after-another), while latter is calling requests **concurrently**
 as high as 100, by default). This results in "no-op async function" being executed ~700 times/second
 sequentially (needing to do await the "tick" for each Promise), and ~32K times/second (requests per
 second) while served from http server (concurrently).
-
-# Features
-
-- ...
-
-# Packaging
-
-- `engines.node`: Latest Node.js LTS
-- `main: dist/index.js`: commonjs, es2020
-- `types: dist/index.d.ts`: typescript types

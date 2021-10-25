@@ -11,6 +11,16 @@ import { plotAsciiChart } from './asciiChart.util'
 import type { HertzMap, RunBenchOptions } from './bench.model'
 
 /**
+ * Wraps `runBench` in `runScript` for convenience, so it can be run in top-level without `await`.
+ */
+export function runBenchScript(opt: RunBenchOptions): void {
+  void runBench(opt).catch(err => {
+    console.error(err)
+    process.exit(1)
+  })
+}
+
+/**
  * Only DeferredFunctions are allowed, because of: https://github.com/bestiejs/benchmark.js/issues/111
  */
 export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
@@ -18,7 +28,7 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     runs = 1,
     writeSummary = true,
     writePlot = true,
-    asciiPlot = false,
+    asciiPlot = true,
     name = 'runBench',
   } = opt
   const { reportDirPath = `./tmp/${name}` } = opt

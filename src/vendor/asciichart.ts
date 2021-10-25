@@ -8,7 +8,6 @@ Adapted for typescript.
 Super-experimental!
  */
 
-/* tslint:disable */
 /* eslint-disable */
 
 export const asciiColor = {

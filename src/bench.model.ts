@@ -60,7 +60,7 @@ export interface RunBenchOptions {
    *
    * @experimental
    *
-   * @default false
+   * @default true
    */
   asciiPlot?: boolean
 }

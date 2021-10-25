@@ -2,7 +2,7 @@
   "extends": "@naturalcycles/dev-lib/cfg/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "lib": ["es2019", "dom"],
+    "lib": ["es2020", "dom"],
     "sourceMap": true,
     "skipLibCheck": true
   },
