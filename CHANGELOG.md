@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/NaturalCycles/bench-lib/compare/v1.5.0...v1.6.0) (2021-10-25)
+
+
+### Features
+
+* runBenchScript, runCannonScript ([8a676e1](https://github.com/NaturalCycles/bench-lib/commit/8a676e18d84a7babbb64d066ff3009ad27ac63ea))
+
 # [1.5.0](https://github.com/NaturalCycles/bench-lib/compare/v1.4.0...v1.5.0) (2021-08-25)
 
 
