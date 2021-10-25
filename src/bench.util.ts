@@ -1,5 +1,6 @@
 import { pDefer, _range } from '@naturalcycles/js-lib'
 import { dimGrey, yellow } from '@naturalcycles/nodejs-lib/dist/colors'
+import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
 import type { Event, Suite } from 'benchmark'
 import * as Benchmark from 'benchmark'
 import * as fs from 'fs-extra'
@@ -14,9 +15,11 @@ import type { HertzMap, RunBenchOptions } from './bench.model'
  * Wraps `runBench` in `runScript` for convenience, so it can be run in top-level without `await`.
  */
 export function runBenchScript(opt: RunBenchOptions): void {
-  void runBench(opt).catch(err => {
-    console.error(err)
-    process.exit(1)
+  // fake timeout is needed to workaround `benchmark` process exiting too early when 2+ runs are used
+  const timeout = setTimeout(() => {}, 10000000)
+  runScript(async () => {
+    await runBench(opt)
+    clearTimeout(timeout)
   })
 }
 
@@ -33,7 +36,7 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
   } = opt
   const { reportDirPath = `./tmp/${name}` } = opt
 
-  console.log('\n\n')
+  console.log(`running benchmark...\n\n`)
 
   const results: HertzMap[] = []
 
@@ -103,13 +106,13 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
       defer.resolve(results)
     })
     .on('error', function (event: any) {
-      console.log(event.target.error)
+      console.log('bench error:\n', event.target.error)
     })
 
   const fnNames = Object.keys(opt.fns || {})
   if (run % 2 === 0) fnNames.reverse()
   fnNames.forEach(name => {
-    suite.add(opt.fns![name]!, {
+    suite.add(opt.fns[name]!, {
       defer: true,
       name,
     })

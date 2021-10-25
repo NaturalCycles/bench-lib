@@ -2,7 +2,7 @@ export interface BenchDeferred {
   resolve(): void
 }
 
-export type BenchDeferredFunction = (defer: BenchDeferred) => any
+export type BenchDeferredFunction = (done: BenchDeferred) => any
 
 export interface RunBenchOptions {
   /**
@@ -11,7 +11,7 @@ export interface RunBenchOptions {
    * BenchDeferredFunction takes `done` callback as a first argument,
    * `done.resolve()` HAS to be called at the end of your function.
    */
-  fns?: Record<string, BenchDeferredFunction>
+  fns: Record<string, BenchDeferredFunction>
 
   /**
    * How many times to run.

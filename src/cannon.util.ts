@@ -1,4 +1,5 @@
 import type { AddressInfo } from 'net'
+import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
 import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
 import { boldRed, dimGrey, yellow } from '@naturalcycles/nodejs-lib/dist/colors'
 import * as fs from 'fs-extra'
@@ -21,9 +22,12 @@ export function runCannonScript(
   profiles: StringMap<HttpServerFactory>,
   optInput: RunCannonOptions = {},
 ): void {
-  void runCannon(profiles, optInput).catch(err => {
-    console.error(err)
-    process.exit(1)
+  // fake timeout is needed to workaround `benchmark` process exiting too early when 2+ runs are used
+  const timeout = setTimeout(() => {}, 10000000)
+
+  runScript(async () => {
+    await runCannon(profiles, optInput)
+    clearTimeout(timeout)
   })
 }
 
