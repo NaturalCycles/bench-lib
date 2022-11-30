@@ -1,4 +1,4 @@
-import * as http from 'http'
+import * as http from 'node:http'
 import * as express from 'express'
 import * as helmet from 'helmet'
 import { HttpServerFactory } from './cannon.model'

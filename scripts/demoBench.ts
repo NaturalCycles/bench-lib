@@ -4,9 +4,9 @@ yarn tsn demoBench
 
  */
 
-import { runBench } from '../src/bench.util'
+import { runBenchScript } from '../src'
 
-void runBench({
+runBenchScript({
   fns: {
     noop: done => done.resolve(),
     random: done => {

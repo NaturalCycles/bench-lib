@@ -1,4 +1,4 @@
-import type { AddressInfo } from 'net'
+import type { AddressInfo } from 'node:net'
 import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
 import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
 import { boldRed, dimGrey, yellow } from '@naturalcycles/nodejs-lib/dist/colors'

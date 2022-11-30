@@ -5,10 +5,9 @@ yarn tsn demoCannon
  */
 
 import { pDelay, _randomInt } from '@naturalcycles/js-lib'
-import { expressFunctionFactory } from '../src'
-import { runCannon } from '../src'
+import { expressFunctionFactory, runCannonScript } from '../src'
 
-void runCannon(
+runCannonScript(
   {
     noop: expressFunctionFactory(() => 'yo'),
     async: expressFunctionFactory(async () => await pDelay(0, 'yo')),
