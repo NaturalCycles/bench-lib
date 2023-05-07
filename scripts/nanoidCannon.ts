@@ -4,10 +4,10 @@ yarn tsn nanoidCannon
 
  */
 
-import { nanoid } from 'nanoid'
-import { nanoid as nanoidAsync } from 'nanoid/async'
+import { nanoid } from '@naturalcycles/nodejs-lib'
 import { expressFunctionFactory, expressSyncFunctionFactory } from '../src/cannon.profiles'
 import { runCannonScript } from '../src'
+const { nanoid: nanoidAsync } = require('nanoid/async')
 
 runCannonScript(
   {

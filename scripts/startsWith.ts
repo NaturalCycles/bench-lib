@@ -9,6 +9,8 @@ import { runBenchScript } from '../src'
 
 const strings = _range(100).map(String)
 
+/* eslint-disable */
+
 runBenchScript({
   fns: {
     startsWith: done => {

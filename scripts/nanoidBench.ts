@@ -4,10 +4,12 @@ yarn tsn nanoidBench
 
  */
 
-import { nanoid } from 'nanoid'
-import { nanoid as nanoidAsync } from 'nanoid/async'
-import { nanoid as nanoidNonSecure } from 'nanoid/non-secure'
+// import { nanoid as nanoidAsync } from 'nanoid/async'
+// import { nanoid as nanoidNonSecure } from 'nanoid/non-secure'
+import { nanoid } from '@naturalcycles/nodejs-lib'
 import { runBenchScript } from '../src'
+const { nanoid: nanoidAsync } = require('nanoid/async')
+const { nanoid: nanoidNonSecure } = require('nanoid/non-secure')
 
 runBenchScript({
   fns: {

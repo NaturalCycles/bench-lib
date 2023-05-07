@@ -1,5 +1,5 @@
 export interface BenchDeferred {
-  resolve(): void
+  resolve: () => void
 }
 
 export type BenchDeferredFunction = (done: BenchDeferred) => any
