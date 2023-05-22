@@ -1,12 +1,12 @@
 import { pDelay } from '@naturalcycles/js-lib'
-import * as fs from 'fs-extra'
+import { _emptyDirSync, _pathExistsSync, _readJsonSync } from '@naturalcycles/nodejs-lib'
 import { expressFunctionFactory } from './cannon.profiles'
 import { runCannon } from './cannon.util'
 import { tmpDir } from './test/paths.cnst'
 
 test('runCannon', async () => {
   const reportDirPath = `${tmpDir}/cannonTest`
-  fs.emptyDirSync(reportDirPath)
+  _emptyDirSync(reportDirPath)
 
   await runCannon(
     {
@@ -24,7 +24,7 @@ test('runCannon', async () => {
     },
   )
 
-  const summary = fs.readJsonSync(`${reportDirPath}/Benchmark.summary.json`)
+  const summary = _readJsonSync<any>(`${reportDirPath}/Benchmark.summary.json`)
   expect(summary[0]).toMatchObject({
     name: 'noop',
     rpsAvg: expect.any(Number),
@@ -40,5 +40,5 @@ test('runCannon', async () => {
     name: 'async',
   })
 
-  expect(fs.pathExistsSync(`${reportDirPath}/Benchmark.latencyAvg.svg`)).toBe(true)
+  expect(_pathExistsSync(`${reportDirPath}/Benchmark.latencyAvg.svg`)).toBe(true)
 }, 240000)

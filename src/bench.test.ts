@@ -1,10 +1,10 @@
-import * as fs from 'fs-extra'
+import { _emptyDirSync, _pathExistsSync, _readJsonSync } from '@naturalcycles/nodejs-lib'
 import { runBench } from './bench.util'
 import { tmpDir } from './test/paths.cnst'
 
 test('runBench', async () => {
   const reportDirPath = `${tmpDir}/benchTest`
-  fs.emptyDirSync(reportDirPath)
+  _emptyDirSync(reportDirPath)
 
   const r = await runBench({
     fns: {
@@ -24,11 +24,11 @@ test('runBench', async () => {
     immediate: expect.any(Number),
   })
 
-  const summary = fs.readJsonSync(`${reportDirPath}/runBench.json`)
+  const summary = _readJsonSync(`${reportDirPath}/runBench.json`)
   expect(summary).toMatchObject({
     noop: expect.any(Number),
     immediate: expect.any(Number),
   })
 
-  expect(fs.pathExistsSync(`${reportDirPath}/runBench.svg`)).toBe(true)
+  expect(_pathExistsSync(`${reportDirPath}/runBench.svg`)).toBe(true)
 }, 240000)
