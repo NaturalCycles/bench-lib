@@ -4,7 +4,7 @@ yarn tsn bench
 
  */
 
-import { runScript } from '@naturalcycles/nodejs-lib/dist/script'
+import { runScript } from '@naturalcycles/nodejs-lib'
 import { runBench } from '../src/bench.util'
 
 runScript(async () => {
