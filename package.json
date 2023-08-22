@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@naturalcycles/js-lib": "^14.0.0",
-    "@naturalcycles/nodejs-lib": "^12.0.0",
+    "@naturalcycles/nodejs-lib": "^13.0.2",
     "autocannon": "^7.0.0",
     "benchmark": "^2.1.4",
     "express": "^4.17.1",
@@ -34,7 +34,7 @@
     "url": "https://github.com/NaturalCycles/bench-lib"
   },
   "engines": {
-    "node": ">=16.10.0"
+    "node": ">=18.12.0"
   },
   "version": "1.6.1",
   "description": "Benchmarking library, based on Benchmark.js and Autocannon",
