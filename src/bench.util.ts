@@ -1,12 +1,17 @@
 import { pDefer, _range } from '@naturalcycles/js-lib'
-import { _ensureDirSync, _writeFileSync, _writeJsonSync } from '@naturalcycles/nodejs-lib'
-import { dimGrey, yellow } from '@naturalcycles/nodejs-lib'
-import { runScript } from '@naturalcycles/nodejs-lib'
+import {
+  _ensureDirSync,
+  _writeFileSync,
+  _writeJsonSync,
+  dimGrey,
+  yellow,
+  runScript,
+} from '@naturalcycles/nodejs-lib'
 import type { Event, Suite } from 'benchmark'
-import * as Benchmark from 'benchmark'
-import * as vega from 'vega'
+import Benchmark from 'benchmark'
+import vega from 'vega'
 import type { Spec } from 'vega'
-import * as vegaLite from 'vega-lite'
+import vegaLite from 'vega-lite'
 import type { TopLevelSpec } from 'vega-lite'
 import { plotAsciiChart } from './asciiChart.util'
 import type { HertzMap, RunBenchOptions } from './bench.model'

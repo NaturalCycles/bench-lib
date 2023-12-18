@@ -1,11 +1,17 @@
 import type { AddressInfo } from 'node:net'
-import { _ensureDirSync, _writeFileSync, _writeJsonSync } from '@naturalcycles/nodejs-lib'
-import { runScript } from '@naturalcycles/nodejs-lib'
 import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
-import { boldRed, dimGrey, yellow } from '@naturalcycles/nodejs-lib'
-import * as vega from 'vega'
+import {
+  _ensureDirSync,
+  _writeFileSync,
+  _writeJsonSync,
+  runScript,
+  boldRed,
+  dimGrey,
+  yellow,
+} from '@naturalcycles/nodejs-lib'
+import vega from 'vega'
 import type { Spec } from 'vega'
-import * as vegaLite from 'vega-lite'
+import vegaLite from 'vega-lite'
 import type { TopLevelSpec } from 'vega-lite'
 import type {
   AutocannonResult,

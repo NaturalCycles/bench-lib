@@ -4,7 +4,7 @@ yarn tsn cannonPost.bench
 
  */
 
-import * as http from 'node:http'
+import http from 'node:http'
 import { runScript } from '@naturalcycles/nodejs-lib'
 import express = require('express')
 import { runCannon } from '../src'

@@ -1,6 +1,6 @@
-import * as http from 'node:http'
-import * as express from 'express'
-import * as helmet from 'helmet'
+import http from 'node:http'
+import express from 'express'
+import helmet from 'helmet'
 import { HttpServerFactory } from './cannon.model'
 
 export const bareNodeServerFactory: HttpServerFactory = async () => {
