@@ -1,14 +1,6 @@
 import type { AddressInfo } from 'node:net'
 import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
-import {
-  _ensureDirSync,
-  _writeFileSync,
-  _writeJsonSync,
-  runScript,
-  boldRed,
-  dimGrey,
-  yellow,
-} from '@naturalcycles/nodejs-lib'
+import { runScript, boldRed, dimGrey, yellow, fs2 } from '@naturalcycles/nodejs-lib'
 import vega from 'vega'
 import type { Spec } from 'vega'
 import vegaLite from 'vega-lite'
@@ -74,7 +66,7 @@ export async function runCannon(
   }
 
   const { reportDirPath } = opt
-  _ensureDirSync(reportDirPath)
+  fs2.ensureDir(reportDirPath)
 
   const resultByProfile: StringMap<AutocannonResult> = {}
   const summaries: AutocannonSummary[] = []
@@ -92,12 +84,12 @@ export async function runCannon(
 
   if (opt.writeSummary) {
     const summaryJsonPath = `${reportDirPath}/${opt.name}.summary.json`
-    _writeJsonSync(summaryJsonPath, summaries, { spaces: 2 })
+    fs2.writeJson(summaryJsonPath, summaries, { spaces: 2 })
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
   }
 
   if (opt.writeRawSummary) {
-    _writeJsonSync(`${reportDirPath}/${opt.name}.rawSummary.json`, resultByProfile, { spaces: 2 })
+    fs2.writeJson(`${reportDirPath}/${opt.name}.rawSummary.json`, resultByProfile, { spaces: 2 })
   }
 
   if (opt.writePlots) {
@@ -194,7 +186,7 @@ async function writePlotFiles(
   summaries: AutocannonSummary[],
 ): Promise<void> {
   const { reportDirPath, name } = opt
-  _ensureDirSync(reportDirPath)
+  fs2.ensureDir(reportDirPath)
 
   let fields = ['rpsAvg', 'latencyAvg', 'latency50', 'latency90', 'latency99', 'throughputAvg']
   if (!opt.includeLatencyPercentiles) {
@@ -211,10 +203,10 @@ async function writePlotFiles(
     const svg = await view.toSVG()
     // console.log(svg)
 
-    _writeFileSync(`${reportDirPath}/${name}.${specName}.svg`, svg)
+    fs2.writeFile(`${reportDirPath}/${name}.${specName}.svg`, svg)
   })
 
-  _writeFileSync(`${reportDirPath}/${name}.md`, mdContent(opt, Object.keys(specs)))
+  fs2.writeFile(`${reportDirPath}/${name}.md`, mdContent(opt, Object.keys(specs)))
 }
 
 function autocannonSummaryToVegaSpecs(

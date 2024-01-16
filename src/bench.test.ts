@@ -1,10 +1,10 @@
-import { _emptyDirSync, _pathExistsSync, _readJsonSync } from '@naturalcycles/nodejs-lib'
+import { fs2 } from '@naturalcycles/nodejs-lib'
 import { runBench } from './bench.util'
 import { tmpDir } from './test/paths.cnst'
 
 test('runBench', async () => {
   const reportDirPath = `${tmpDir}/benchTest`
-  _emptyDirSync(reportDirPath)
+  fs2.emptyDir(reportDirPath)
 
   const r = await runBench({
     fns: {
@@ -24,11 +24,11 @@ test('runBench', async () => {
     immediate: expect.any(Number),
   })
 
-  const summary = _readJsonSync(`${reportDirPath}/runBench.json`)
+  const summary = fs2.readJson(`${reportDirPath}/runBench.json`)
   expect(summary).toMatchObject({
     noop: expect.any(Number),
     immediate: expect.any(Number),
   })
 
-  expect(_pathExistsSync(`${reportDirPath}/runBench.svg`)).toBe(true)
+  expect(fs2.pathExists(`${reportDirPath}/runBench.svg`)).toBe(true)
 }, 240000)

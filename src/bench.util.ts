@@ -1,12 +1,5 @@
 import { pDefer, _range } from '@naturalcycles/js-lib'
-import {
-  _ensureDirSync,
-  _writeFileSync,
-  _writeJsonSync,
-  dimGrey,
-  yellow,
-  runScript,
-} from '@naturalcycles/nodejs-lib'
+import { dimGrey, yellow, runScript, fs2 } from '@naturalcycles/nodejs-lib'
 import type { Event, Suite } from 'benchmark'
 import Benchmark from 'benchmark'
 import vega from 'vega'
@@ -65,21 +58,21 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     //   summary[name] = results.hz.map(map => map[name]!)
     // })
 
-    _ensureDirSync(reportDirPath)
+    fs2.ensureDir(reportDirPath)
     const summaryJsonPath = `${reportDirPath}/${name}.json`
-    _writeJsonSync(summaryJsonPath, avg, { spaces: 2 })
+    fs2.writeJson(summaryJsonPath, avg, { spaces: 2 })
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
   }
 
   if (writePlot) {
-    _ensureDirSync(reportDirPath)
+    fs2.ensureDir(reportDirPath)
 
     const spec = benchResultsToVegaSpec(avg)
     const view = new vega.View(vega.parse(spec), { renderer: 'none' })
     const svg = await view.toSVG()
 
     const plotPath = `${reportDirPath}/${name}.svg`
-    _writeFileSync(plotPath, svg)
+    fs2.writeFile(plotPath, svg)
     console.log(`saved ${dimGrey(plotPath)}`)
   }
 
