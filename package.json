@@ -1,7 +1,7 @@
 {
   "name": "@naturalcycles/bench-lib",
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@naturalcycles/js-lib": "^14.0.0",
@@ -9,9 +9,7 @@
     "autocannon": "^7.0.0",
     "benchmark": "^2.1.4",
     "express": "^4.17.1",
-    "helmet": "^7.0.0",
-    "vega": "^5.10.1",
-    "vega-lite": "^5.0.0"
+    "helmet": "^7.0.0"
   },
   "devDependencies": {
     "@naturalcycles/dev-lib": "^13.6.0",

@@ -26,6 +26,6 @@ runBenchScript({
   },
   runs: 1,
   reportDirPath: './demo',
-  writePlot: true,
+  // writePlot: true,
   writeSummary: true,
 })

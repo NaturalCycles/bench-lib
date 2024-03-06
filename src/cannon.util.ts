@@ -1,10 +1,6 @@
 import type { AddressInfo } from 'node:net'
-import { pDefer, pDelay, pMap, StringMap, _omit, _range } from '@naturalcycles/js-lib'
+import { pDefer, pDelay, StringMap, _omit, _range } from '@naturalcycles/js-lib'
 import { runScript, boldRed, dimGrey, yellow, fs2 } from '@naturalcycles/nodejs-lib'
-import vega from 'vega'
-import type { Spec } from 'vega'
-import vegaLite from 'vega-lite'
-import type { TopLevelSpec } from 'vega-lite'
 import type {
   AutocannonResult,
   AutocannonSummary,
@@ -36,7 +32,6 @@ export async function runCannon(
   const opt: RunCannonNormalizedOptions = {
     name: 'Benchmark',
     reportDirPath: `./tmp/${optInput.name || 'Benchmark'}`,
-    writePlots: true,
     writeSummary: true,
     writeRawSummary: true,
     runs: 2,
@@ -92,9 +87,9 @@ export async function runCannon(
     fs2.writeJson(`${reportDirPath}/${opt.name}.rawSummary.json`, resultByProfile, { spaces: 2 })
   }
 
-  if (opt.writePlots) {
-    await writePlotFiles(opt, summaries)
-  }
+  // if (opt.writePlots) {
+  //   await writePlotFiles(opt, summaries)
+  // }
 
   return summaries
 }
@@ -181,6 +176,7 @@ function toSummary(name: string, result: AutocannonResult): AutocannonSummary {
   }
 }
 
+/*
 async function writePlotFiles(
   opt: RunCannonNormalizedOptions,
   summaries: AutocannonSummary[],
@@ -250,6 +246,7 @@ function autocannonSummaryToVegaSpecs(
   return specs
 }
 
+
 function mdContent(opt: RunCannonNormalizedOptions, specNames: string[]): string {
   return [
     `# ${opt.name}`,
@@ -260,3 +257,4 @@ function mdContent(opt: RunCannonNormalizedOptions, specNames: string[]): string
     .filter(Boolean)
     .join('\n\n')
 }
+*/

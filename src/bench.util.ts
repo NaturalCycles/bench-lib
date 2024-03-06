@@ -2,10 +2,6 @@ import { pDefer, _range } from '@naturalcycles/js-lib'
 import { dimGrey, yellow, runScript, fs2 } from '@naturalcycles/nodejs-lib'
 import type { Event, Suite } from 'benchmark'
 import Benchmark from 'benchmark'
-import vega from 'vega'
-import type { Spec } from 'vega'
-import vegaLite from 'vega-lite'
-import type { TopLevelSpec } from 'vega-lite'
 import { plotAsciiChart } from './asciiChart.util'
 import type { HertzMap, RunBenchOptions } from './bench.model'
 
@@ -25,13 +21,7 @@ export function runBenchScript(opt: RunBenchOptions): void {
  * Only DeferredFunctions are allowed, because of: https://github.com/bestiejs/benchmark.js/issues/111
  */
 export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
-  const {
-    runs = 1,
-    writeSummary = true,
-    writePlot = true,
-    asciiPlot = true,
-    name = 'runBench',
-  } = opt
+  const { runs = 1, writeSummary = true, asciiPlot = true, name = 'runBench' } = opt
   const { reportDirPath = `./tmp/${name}` } = opt
 
   console.log(`running benchmark...\n\n`)
@@ -64,17 +54,18 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     console.log(`saved ${dimGrey(summaryJsonPath)}`)
   }
 
-  if (writePlot) {
-    fs2.ensureDir(reportDirPath)
-
-    const spec = benchResultsToVegaSpec(avg)
-    const view = new vega.View(vega.parse(spec), { renderer: 'none' })
-    const svg = await view.toSVG()
-
-    const plotPath = `${reportDirPath}/${name}.svg`
-    fs2.writeFile(plotPath, svg)
-    console.log(`saved ${dimGrey(plotPath)}`)
-  }
+  // Vega plots are currently disabled
+  // if (writePlot) {
+  //   fs2.ensureDir(reportDirPath)
+  //
+  //   const spec = benchResultsToVegaSpec(avg)
+  //   const view = new vega.View(vega.parse(spec), { renderer: 'none' })
+  //   const svg = await view.toSVG()
+  //
+  //   const plotPath = `${reportDirPath}/${name}.svg`
+  //   fs2.writeFile(plotPath, svg)
+  //   console.log(`saved ${dimGrey(plotPath)}`)
+  // }
 
   if (asciiPlot) {
     console.log('\n' + plotAsciiChart(avg))
@@ -123,6 +114,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
   return await defer
 }
 
+/*
 function benchResultsToVegaSpec(map: HertzMap): Spec {
   const values = Object.entries(map).map(([name, hz]) => {
     return {
@@ -161,3 +153,4 @@ function benchResultsToVegaSpec(map: HertzMap): Spec {
   const { spec } = vegaLite.compile(liteSpec)
   return spec
 }
+*/

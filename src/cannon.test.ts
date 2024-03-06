@@ -19,7 +19,7 @@ test('runCannon', async () => {
       cooldown: 0,
       reportDirPath,
       silent: true,
-      writePlots: true,
+      // writePlots: true,
       writeSummary: true,
     },
   )
@@ -40,5 +40,5 @@ test('runCannon', async () => {
     name: 'async',
   })
 
-  expect(fs2.pathExists(`${reportDirPath}/Benchmark.latencyAvg.svg`)).toBe(true)
+  // expect(fs2.pathExists(`${reportDirPath}/Benchmark.latencyAvg.svg`)).toBe(true)
 }, 240000)

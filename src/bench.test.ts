@@ -15,7 +15,7 @@ test('runBench', async () => {
     },
     runs: 1,
     reportDirPath,
-    writePlot: true,
+    // writePlot: true,
     writeSummary: true,
   })
 
@@ -30,5 +30,5 @@ test('runBench', async () => {
     immediate: expect.any(Number),
   })
 
-  expect(fs2.pathExists(`${reportDirPath}/runBench.svg`)).toBe(true)
+  // expect(fs2.pathExists(`${reportDirPath}/runBench.svg`)).toBe(true)
 }, 240000)

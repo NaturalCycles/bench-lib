@@ -53,7 +53,7 @@ export interface RunBenchOptions {
    *
    * @default true
    */
-  writePlot?: boolean
+  // writePlot?: boolean // feature disabled
 
   /**
    * Plot ascii chart in the terminal:)

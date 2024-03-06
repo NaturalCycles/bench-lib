@@ -46,7 +46,7 @@ runScript(async () => {
       },
     },
     runs: 2,
-    writePlot: true,
+    // writePlot: true,
     writeSummary: true,
   })
 

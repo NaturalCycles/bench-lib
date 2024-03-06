@@ -95,7 +95,7 @@ export interface RunCannonOptions {
    *
    * @default true
    */
-  writePlots?: boolean
+  // writePlots?: boolean // feature disabled
 
   /**
    * Will write to ${reportDirPath}/${name}.${rawSummary}.json
