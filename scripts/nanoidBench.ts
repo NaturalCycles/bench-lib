@@ -11,6 +11,8 @@ import { runBenchScript } from '../src'
 const { nanoid: nanoidAsync } = require('nanoid/async')
 const { nanoid: nanoidNonSecure } = require('nanoid/non-secure')
 
+/* eslint-disable no-useless-assignment */
+
 runBenchScript({
   fns: {
     nanoidNonSecure: done => {

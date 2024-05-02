@@ -21,7 +21,7 @@ export function runBenchScript(opt: RunBenchOptions): void {
  * Only DeferredFunctions are allowed, because of: https://github.com/bestiejs/benchmark.js/issues/111
  */
 export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
-  const { runs = 1, writeSummary = true, asciiPlot = true, name = 'runBench' } = opt
+  const { runs = 2, writeSummary = true, asciiPlot = true, name = 'runBench' } = opt
   const { reportDirPath = `./tmp/${name}` } = opt
 
   console.log(`running benchmark...\n\n`)

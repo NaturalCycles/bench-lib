@@ -17,7 +17,7 @@ export interface RunBenchOptions {
    * How many times to run.
    * Every second run will be in reverse order.
    *
-   * @default 1
+   * @default 2
    */
   runs?: number
 
