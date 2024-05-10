@@ -13,23 +13,17 @@ const strings = _range(100).map(String)
 
 runBenchScript({
   fns: {
-    startsWith: done => {
+    startsWith: () => {
       let _count = 0
       strings.forEach(s => {
         if (s.startsWith('2')) _count++
       })
-
-      done.resolve()
     },
-    indexOf: done => {
+    indexOf: () => {
       let _count = 0
       strings.forEach(s => {
         if (s.indexOf('2') === 0) _count++
       })
-
-      done.resolve()
     },
   },
-  runs: 1,
-  asciiPlot: true,
 })

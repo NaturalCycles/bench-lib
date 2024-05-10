@@ -101,7 +101,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
   if (run % 2 === 0) fnNames.reverse()
   fnNames.forEach(name => {
     suite.add(opt.fns[name]!, {
-      defer: true,
+      defer: false, // used to be true
       name,
     })
   })

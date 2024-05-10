@@ -8,10 +8,10 @@ test('runBench', async () => {
 
   const r = await runBench({
     fns: {
-      noop: done => done.resolve(),
-      immediate: done => {
-        setImmediate(() => done.resolve())
-      },
+      noop: () => {},
+      // immediate: done => {
+      //   setImmediate(() => done.resolve())
+      // },
     },
     runs: 1,
     reportDirPath,
@@ -21,13 +21,13 @@ test('runBench', async () => {
 
   expect(r).toMatchObject({
     noop: expect.any(Number),
-    immediate: expect.any(Number),
+    // immediate: expect.any(Number),
   })
 
   const summary = fs2.readJson(`${reportDirPath}/runBench.json`)
   expect(summary).toMatchObject({
     noop: expect.any(Number),
-    immediate: expect.any(Number),
+    // immediate: expect.any(Number),
   })
 
   // expect(fs2.pathExists(`${reportDirPath}/runBench.svg`)).toBe(true)

@@ -1,17 +1,11 @@
-export interface BenchDeferred {
-  resolve: () => void
-}
-
-export type BenchDeferredFunction = (done: BenchDeferred) => any
+export type BenchFunction = () => void
 
 export interface RunBenchOptions {
   /**
    * Functions to benchmark.
-   * Record from function name to a `BenchDeferredFunction`.
-   * BenchDeferredFunction takes `done` callback as a first argument,
-   * `done.resolve()` HAS to be called at the end of your function.
+   * Record from function name to a `BenchFunction`.
    */
-  fns: Record<string, BenchDeferredFunction>
+  fns: Record<string, BenchFunction>
 
   /**
    * How many times to run.

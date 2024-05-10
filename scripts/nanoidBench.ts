@@ -8,32 +8,27 @@ yarn tsn nanoidBench
 // import { nanoid as nanoidNonSecure } from 'nanoid/non-secure'
 import { nanoid } from '@naturalcycles/nodejs-lib'
 import { runBenchScript } from '../src'
-const { nanoid: nanoidAsync } = require('nanoid/async')
 const { nanoid: nanoidNonSecure } = require('nanoid/non-secure')
 
 /* eslint-disable no-useless-assignment */
 
 runBenchScript({
   fns: {
-    nanoidNonSecure: done => {
+    nanoidNonSecure: () => {
       let _count = 0
       const id = nanoidNonSecure()
       if (id) _count++
-      done.resolve()
     },
-    nanoidSync: done => {
+    nanoidSync: () => {
       let _count = 0
       const id = nanoid()
       if (id) _count++
-      done.resolve()
     },
-    nanoidAsync: async done => {
-      let _count = 0
-      const id = await nanoidAsync()
-      if (id) _count++
-      done.resolve()
-    },
+    // nanoidAsync: async done => {
+    //   let _count = 0
+    //   const id = await nanoidAsync()
+    //   if (id) _count++
+    //   done.resolve()
+    // },
   },
-  runs: 2,
-  asciiPlot: true,
 })

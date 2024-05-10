@@ -1,14 +1,8 @@
-import { pDelay, _randomInt } from '@naturalcycles/js-lib'
-import { BenchDeferredFunction } from './bench.model'
+import { _randomInt } from '@naturalcycles/js-lib'
+import { BenchFunction } from './bench.model'
 
-export const benchNoopFn: BenchDeferredFunction = done => done.resolve()
+export const benchNoopFn: BenchFunction = () => {}
 
-export const benchRandomFn: BenchDeferredFunction = done => {
+export const benchRandomFn: BenchFunction = () => {
   const _ = _randomInt(1, 10)
-  done.resolve()
-}
-
-export const benchPDelayFn: BenchDeferredFunction = async done => {
-  await pDelay()
-  done.resolve()
 }

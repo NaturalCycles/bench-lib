@@ -29,21 +29,20 @@ runScript(async () => {
       //   // await pDelay()
       //   done.resolve()
       // },
-      noop: done => done.resolve(),
-      random: done => {
+      noop: () => {},
+      random: () => {
         const _ = Math.random()
-        done.resolve()
       },
-      timeout: done => {
-        setTimeout(() => done.resolve(), 0)
-      },
-      immediate: done => {
-        setImmediate(() => done.resolve())
-      },
-      asyncAwait: async done => {
-        await new Promise<void>(resolve => resolve())
-        done.resolve()
-      },
+      // timeout: done => {
+      //   setTimeout(() => done.resolve(), 0)
+      // },
+      // immediate: done => {
+      //   setImmediate(() => done.resolve())
+      // },
+      // asyncAwait: async done => {
+      //   await new Promise<void>(resolve => resolve())
+      //   done.resolve()
+      // },
     },
     runs: 2,
     // writePlot: true,
