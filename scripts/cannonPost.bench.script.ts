@@ -6,17 +6,16 @@ yarn tsn cannonPost.bench
 
 import http from 'node:http'
 import { runScript } from '@naturalcycles/nodejs-lib'
-import express = require('express')
 import { runCannon } from '../src'
 
 runScript(async () => {
   await runCannon(
     {
       '01-post': async () => {
-        const app = express()
+        const app = require('express')()
         app.disable('etag')
         app.disable('x-powered-by')
-        app.post('/hello', (req, res) => res.json({ ok: true }))
+        app.post('/hello', (req: any, res: any) => res.json({ ok: true }))
         return http.createServer(app)
       },
     },
