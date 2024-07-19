@@ -4,7 +4,7 @@ yarn tsn cannon
 
  */
 
-import { pDelay, _randomInt } from '@naturalcycles/js-lib'
+import { _randomInt, pDelay } from '@naturalcycles/js-lib'
 import { expressFunctionFactory, runCannonScript } from '../src'
 
 runCannonScript(

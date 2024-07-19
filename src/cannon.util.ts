@@ -1,6 +1,6 @@
 import type { AddressInfo } from 'node:net'
-import { pDefer, pDelay, StringMap, _omit, _range } from '@naturalcycles/js-lib'
-import { runScript, boldRed, dimGrey, yellow, fs2 } from '@naturalcycles/nodejs-lib'
+import { _omit, _range, pDefer, pDelay, StringMap } from '@naturalcycles/js-lib'
+import { boldRed, dimGrey, fs2, runScript, yellow } from '@naturalcycles/nodejs-lib'
 import type {
   AutocannonResult,
   AutocannonSummary,
@@ -68,7 +68,7 @@ export async function runCannon(
 
   for await (const profileName of Object.keys(profiles)) {
     resultByProfile[profileName] = await runCannonProfile(profileName, profiles[profileName]!, opt)
-    const summary = toSummary(profileName, resultByProfile[profileName]!)
+    const summary = toSummary(profileName, resultByProfile[profileName])
     if (!opt.includeLatencyPercentiles) {
       _omit(summary, ['latency50', 'latency90', 'latency99'], true)
     }

@@ -1,5 +1,5 @@
-import { pDefer, _range } from '@naturalcycles/js-lib'
-import { dimGrey, yellow, runScript, fs2 } from '@naturalcycles/nodejs-lib'
+import { _range, pDefer } from '@naturalcycles/js-lib'
+import { dimGrey, fs2, runScript, yellow } from '@naturalcycles/nodejs-lib'
 import type { Event, Suite } from 'benchmark'
 import Benchmark from 'benchmark'
 import { plotAsciiChart } from './asciiChart.util'
@@ -37,7 +37,7 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
     let total = 0
     results.forEach(map => (total += map[name]!))
     avg[name] = total / runs
-    if (avg[name]! > 2) avg[name] = Math.round(avg[name]!)
+    if (avg[name] > 2) avg[name] = Math.round(avg[name])
   })
 
   console.log('\n\n')
