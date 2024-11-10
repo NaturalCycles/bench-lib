@@ -83,14 +83,12 @@ export function asciiPlot(seriesInput: number[][], cfg: AsciiPlotOptions = {}): 
   for (const element of series) {
     width = Math.max(width, element.length)
   }
-  width = width + offset
+  width += offset
   const symbols = typeof cfg.symbols !== 'undefined' ? cfg.symbols : defaultSymbols
   const format =
     typeof cfg.format !== 'undefined'
       ? cfg.format
-      : function (x: number) {
-          return (padding + x.toFixed(2)).slice(-padding.length)
-        }
+      : (x: number) => (padding + x.toFixed(2)).slice(-padding.length)
 
   const result = new Array(rows + 1) // empty space
   for (let i = 0; i <= rows; i++) {
@@ -103,7 +101,7 @@ export function asciiPlot(seriesInput: number[][], cfg: AsciiPlotOptions = {}): 
     // axis + labels
     const label = format(rows > 0 ? max - ((y - min2) * range) / rows : y, y - min2)
     result[y - min2][Math.max(offset - label.length, 0)] = label
-    result[y - min2][offset - 1] = y == 0 ? symbols[0] : symbols[1]
+    result[y - min2][offset - 1] = y === 0 ? symbols[0] : symbols[1]
   }
 
   for (const [j, element] of series.entries()) {
@@ -115,7 +113,7 @@ export function asciiPlot(seriesInput: number[][], cfg: AsciiPlotOptions = {}): 
       // plot the line
       const y0 = Math.round(element[x + 0]! * ratio) - min2
       const y1 = Math.round(element[x + 1]! * ratio) - min2
-      if (y0 == y1) {
+      if (y0 === y1) {
         result[rows - y0][x + offset] = colored(symbols[4]!, currentColor)
       } else {
         result[rows - y1][x + offset] = colored(y0 > y1 ? symbols[5]! : symbols[6]!, currentColor)
@@ -128,9 +126,5 @@ export function asciiPlot(seriesInput: number[][], cfg: AsciiPlotOptions = {}): 
       }
     }
   }
-  return result
-    .map(function (x) {
-      return x.join('')
-    })
-    .join('\n')
+  return result.map(x => x.join('')).join('\n')
 }

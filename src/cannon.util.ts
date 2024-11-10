@@ -66,7 +66,7 @@ export async function runCannon(
   const resultByProfile: StringMap<AutocannonResult> = {}
   const summaries: AutocannonSummary[] = []
 
-  for await (const profileName of Object.keys(profiles)) {
+  for (const profileName of Object.keys(profiles)) {
     resultByProfile[profileName] = await runCannonProfile(profileName, profiles[profileName]!, opt)
     const summary = toSummary(profileName, resultByProfile[profileName])
     if (!opt.includeLatencyPercentiles) {
@@ -120,7 +120,7 @@ async function runCannonProfile(
 
   let finalResult: AutocannonResult = undefined as any
 
-  for await (const run of _range(1, runs + 1)) {
+  for (const run of _range(1, runs + 1)) {
     console.log(`\n${boldRed('=== ' + profileName + ' ===')} run ${yellow(run)}/${yellow(runs)}\n`)
 
     const doneDefer = pDefer<AutocannonResult>()
@@ -133,7 +133,7 @@ async function runCannonProfile(
         duration,
         ...opt.autocannonOptions,
       },
-      (err: any, result: AutocannonResult) => {
+      (err: Error, result: AutocannonResult) => {
         if (err) return doneDefer.reject(err)
         doneDefer.resolve(result)
       },

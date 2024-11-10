@@ -28,7 +28,7 @@ export async function runBench(opt: RunBenchOptions): Promise<HertzMap> {
 
   const results: HertzMap[] = []
 
-  for await (const run of _range(1, runs + 1)) {
+  for (const run of _range(1, runs + 1)) {
     results.push(await runBenchOnce(opt, run))
   }
 
@@ -79,6 +79,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
 
   const suite = new Benchmark.Suite()
     .on('cycle', (event: Event) => {
+      // eslint-disable-next-line @typescript-eslint/no-base-to-string
       console.log(String(event.target))
       // console.log(event.target)
     })
@@ -93,7 +94,7 @@ async function runBenchOnce(opt: RunBenchOptions, run: number): Promise<HertzMap
       })
       defer.resolve(results)
     })
-    .on('error', function (event: any) {
+    .on('error', (event: any) => {
       console.log('bench error:\n', event.target.error)
     })
 

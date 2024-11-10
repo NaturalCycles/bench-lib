@@ -2,7 +2,7 @@ import http from 'node:http'
 import { HttpServerFactory } from './cannon.model'
 
 export const bareNodeServerFactory: HttpServerFactory = async () => {
-  return http.createServer((req, res) => {
+  return http.createServer((_req, res) => {
     res.setHeader('content-type', 'application/json; charset=utf-8')
     res.end(JSON.stringify({ hello: 'world' }))
   })
@@ -12,7 +12,7 @@ export const bareExpressServerFactory: HttpServerFactory = async () => {
   const app = require('express')()
   app.disable('etag')
   app.disable('x-powered-by')
-  app.get('/', (req: any, res: any) => res.json({ hello: 'world' }))
+  app.get('/', (_req: any, res: any) => res.json({ hello: 'world' }))
   return http.createServer(app)
 }
 
@@ -33,7 +33,7 @@ export const expressWithMiddlewaresServerFactory: HttpServerFactory = async () =
   app.use(helmet.ieNoOpen())
   app.use(helmet.xssFilter())
 
-  app.get('/', (req: any, res: any) => res.json({ hello: 'world' }))
+  app.get('/', (_req: any, res: any) => res.json({ hello: 'world' }))
 
   return http.createServer(app)
 }
@@ -46,7 +46,7 @@ export function expressFunctionFactory(fn: () => any): HttpServerFactory {
     const app = require('express')()
     app.disable('etag')
     app.disable('x-powered-by')
-    app.get('/', async (req: any, res: any) => res.json(await fn()))
+    app.get('/', async (_req: any, res: any) => res.json(await fn()))
     return http.createServer(app)
   }
 }
@@ -56,7 +56,7 @@ export function expressSyncFunctionFactory(fn: () => any): HttpServerFactory {
     const app = require('express')()
     app.disable('etag')
     app.disable('x-powered-by')
-    app.get('/', (req: any, res: any) => res.json(fn()))
+    app.get('/', (_req: any, res: any) => res.json(fn()))
     return http.createServer(app)
   }
 }

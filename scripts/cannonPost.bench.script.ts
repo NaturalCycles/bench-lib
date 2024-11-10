@@ -15,7 +15,7 @@ runScript(async () => {
         const app = require('express')()
         app.disable('etag')
         app.disable('x-powered-by')
-        app.post('/hello', (req: any, res: any) => res.json({ ok: true }))
+        app.post('/hello', (_req: any, res: any) => res.json({ ok: true }))
         return http.createServer(app)
       },
     },
