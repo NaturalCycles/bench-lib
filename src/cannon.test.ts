@@ -1,8 +1,9 @@
 import { pDelay } from '@naturalcycles/js-lib'
 import { fs2 } from '@naturalcycles/nodejs-lib'
-import { expressFunctionFactory } from './cannon.profiles'
-import { runCannon } from './cannon.util'
-import { tmpDir } from './test/paths.cnst'
+import { expect, test } from 'vitest'
+import { expressFunctionFactory } from './cannon.profiles.js'
+import { runCannon } from './cannon.util.js'
+import { tmpDir } from './test/paths.cnst.js'
 
 test('runCannon', async () => {
   const reportDirPath = `${tmpDir}/cannonTest`
@@ -28,8 +29,8 @@ test('runCannon', async () => {
   expect(summary[0]).toMatchObject({
     name: 'noop',
     rpsAvg: expect.any(Number),
-    latencyAvg: expect.any(Number),
-    // latency50: expect.any(Number),
+    // latencyAvg: expect.any(Number),
+    latency50: expect.any(Number),
     // latency90: expect.any(Number),
     // latency99: expect.any(Number),
     throughputAvg: expect.any(Number),

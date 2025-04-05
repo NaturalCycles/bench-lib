@@ -1,13 +1,15 @@
 import type { AddressInfo } from 'node:net'
-import { _omit, _range, pDefer, pDelay, StringMap } from '@naturalcycles/js-lib'
+import type { StringMap } from '@naturalcycles/js-lib'
+import { _omit, _range, pDefer, pDelay } from '@naturalcycles/js-lib'
 import { boldRed, dimGrey, fs2, runScript, yellow } from '@naturalcycles/nodejs-lib'
+import hdr from 'hdr-histogram-js'
 import type {
   AutocannonResult,
   AutocannonSummary,
   HttpServerFactory,
   RunCannonNormalizedOptions,
   RunCannonOptions,
-} from './cannon.model'
+} from './cannon.model.js'
 
 /**
  * Wraps `runBench` in `runScript` for convenience, so it can be run in top-level without `await`.
@@ -70,7 +72,7 @@ export async function runCannon(
     resultByProfile[profileName] = await runCannonProfile(profileName, profiles[profileName]!, opt)
     const summary = toSummary(profileName, resultByProfile[profileName])
     if (!opt.includeLatencyPercentiles) {
-      _omit(summary, ['latency50', 'latency90', 'latency99'], true)
+      _omit(summary, ['latency90', 'latency99'], true)
     }
     summaries.push(summary)
   }
@@ -112,7 +114,7 @@ async function runCannonProfile(
     silent,
   } = opt
 
-  const autocannon = require('autocannon')
+  const { default: autocannon } = await import('autocannon' as any)
   const server = await serverFactory()
   await new Promise<void>(resolve => server.listen(0, resolve))
   const { port } = server.address() as AddressInfo
@@ -157,18 +159,31 @@ async function runCannonProfile(
 
   await new Promise(resolve => server.close(resolve))
 
+  // console.log({finalResult})
+  // for whatever weird reason, after moving to ESM, we got a base64 encoded string instead of
+  // a fine object. So, we have to decode it manually :(
+  if (typeof finalResult.latencies === 'string') {
+    finalResult.latency = hdr.decodeFromCompressedBase64(finalResult.latencies).summary as any
+    finalResult.requests = hdr.decodeFromCompressedBase64(finalResult.requests as any)
+      .summary as any
+    finalResult.throughput = hdr.decodeFromCompressedBase64(finalResult.throughput as any)
+      .summary as any
+  }
+
   return finalResult
 }
 
 function toSummary(name: string, result: AutocannonResult): AutocannonSummary {
+  // console.log({result})
+
   return {
     name,
-    rpsAvg: result.requests.average,
-    latencyAvg: result.latency.average,
+    rpsAvg: result.requests.p50,
+    // latencyAvg: result.latency?.average,
     latency50: result.latency.p50,
     latency90: result.latency.p90,
     latency99: result.latency.p99,
-    throughputAvg: Number((result.throughput.average / 1024 / 1024).toFixed(2)),
+    throughputAvg: Number((result.throughput.p50 / 1024 / 1024).toFixed(2)),
     errors: result.errors,
     timeouts: result.timeouts,
     non2xx: result.non2xx,

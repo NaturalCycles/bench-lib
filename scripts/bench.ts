@@ -1,11 +1,11 @@
 /*
 
-yarn tsn bench
+yarn tsx scripts/bench
 
  */
 
 import { runScript } from '@naturalcycles/nodejs-lib'
-import { runBench } from '../src/bench.util'
+import { runBench } from '../src/bench.util.js'
 
 runScript(async () => {
   const r = await runBench({

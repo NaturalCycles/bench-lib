@@ -144,7 +144,7 @@ export interface RunCannonOptions {
 export interface AutocannonSummary {
   name: string
   rpsAvg: number
-  latencyAvg: number
+  latencyAvg?: number
   latency50: number
   latency90: number
   latency99: number
@@ -158,8 +158,11 @@ export interface AutocannonSummary {
 export interface AutocannonResult {
   requests: {
     average: number
+    p50: number
     [k: string]: number
   }
+  latencies: string // base64-encoded histogram
+  // requests: string // base64-encoded histogram
   latency: {
     average: number
     p50: number

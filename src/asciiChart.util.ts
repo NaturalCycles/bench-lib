@@ -1,5 +1,5 @@
 import { _range } from '@naturalcycles/js-lib'
-import { asciiColor, asciiPlot } from './vendor/asciichart'
+import { asciiColor, asciiPlot } from './vendor/asciichart.js'
 
 const colors = [
   asciiColor.blue,

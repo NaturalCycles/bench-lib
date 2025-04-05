@@ -1,5 +1,5 @@
 import http from 'node:http'
-import { HttpServerFactory } from './cannon.model'
+import type { HttpServerFactory } from './cannon.model.js'
 
 export const bareNodeServerFactory: HttpServerFactory = async () => {
   return http.createServer((_req, res) => {
@@ -9,7 +9,8 @@ export const bareNodeServerFactory: HttpServerFactory = async () => {
 }
 
 export const bareExpressServerFactory: HttpServerFactory = async () => {
-  const app = require('express')()
+  const { default: express } = await import('express')
+  const app = express()
   app.disable('etag')
   app.disable('x-powered-by')
   app.get('/', (_req: any, res: any) => res.json({ hello: 'world' }))
@@ -20,12 +21,14 @@ export const bareExpressServerFactory: HttpServerFactory = async () => {
  * Based on: https://github.com/fastify/benchmarks/blob/master/benchmarks/express-with-middlewares.js
  */
 export const expressWithMiddlewaresServerFactory: HttpServerFactory = async () => {
-  const app = require('express')()
-  const helmet = require('helmet')
+  const { default: express } = await import('express')
+  const { default: helmet } = await import('helmet')
+  const { default: cors } = await import('cors')
+  const app = express()
   app.disable('etag')
   app.disable('x-powered-by')
 
-  app.use(require('cors')())
+  app.use(cors())
   app.use(helmet.dnsPrefetchControl())
   app.use(helmet.frameguard())
   app.use(helmet.hidePoweredBy())
@@ -43,7 +46,8 @@ export const expressWithMiddlewaresServerFactory: HttpServerFactory = async () =
  */
 export function expressFunctionFactory(fn: () => any): HttpServerFactory {
   return async () => {
-    const app = require('express')()
+    const { default: express } = await import('express')
+    const app = express()
     app.disable('etag')
     app.disable('x-powered-by')
     app.get('/', async (_req: any, res: any) => res.json(await fn()))
@@ -53,7 +57,8 @@ export function expressFunctionFactory(fn: () => any): HttpServerFactory {
 
 export function expressSyncFunctionFactory(fn: () => any): HttpServerFactory {
   return async () => {
-    const app = require('express')()
+    const { default: express } = await import('express')
+    const app = express()
     app.disable('etag')
     app.disable('x-powered-by')
     app.get('/', (_req: any, res: any) => res.json(fn()))

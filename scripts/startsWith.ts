@@ -1,11 +1,11 @@
 /*
 
-yarn tsn startsWith
+yarn tsx scripts/startsWith
 
  */
 
 import { _range } from '@naturalcycles/js-lib'
-import { runBenchScript } from '../src'
+import { runBenchScript } from '../src/index.js'
 
 const strings = _range(100).map(String)
 

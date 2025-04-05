@@ -1,6 +1,7 @@
 import { fs2 } from '@naturalcycles/nodejs-lib'
-import { runBench } from './bench.util'
-import { tmpDir } from './test/paths.cnst'
+import { expect, test } from 'vitest'
+import { runBench } from './bench.util.js'
+import { tmpDir } from './test/paths.cnst.js'
 
 test('runBench', async () => {
   const reportDirPath = `${tmpDir}/benchTest`

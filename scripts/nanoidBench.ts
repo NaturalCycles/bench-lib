@@ -1,14 +1,14 @@
 /*
 
-yarn tsn nanoidBench
+yarn tsx scripts/nanoidBench
 
  */
 
 // import { nanoid as nanoidAsync } from 'nanoid/async'
 // import { nanoid as nanoidNonSecure } from 'nanoid/non-secure'
 import { nanoid } from '@naturalcycles/nodejs-lib'
-import { runBenchScript } from '../src'
-const { nanoid: nanoidNonSecure } = require('nanoid/non-secure')
+import { nanoid as nanoidNonSecure } from 'nanoid/non-secure'
+import { runBenchScript } from '../src/index.js'
 
 /* eslint-disable no-useless-assignment */
 

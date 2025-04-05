@@ -1,5 +1,5 @@
 import { _randomInt } from '@naturalcycles/js-lib'
-import { BenchFunction } from './bench.model'
+import type { BenchFunction } from './bench.model.js'
 
 export const benchNoopFn: BenchFunction = () => {}
 

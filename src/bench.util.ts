@@ -2,8 +2,8 @@ import { _range, pDefer } from '@naturalcycles/js-lib'
 import { dimGrey, fs2, runScript, yellow } from '@naturalcycles/nodejs-lib'
 import type { Event, Suite } from 'benchmark'
 import Benchmark from 'benchmark'
-import { plotAsciiChart } from './asciiChart.util'
-import type { HertzMap, RunBenchOptions } from './bench.model'
+import { plotAsciiChart } from './asciiChart.util.js'
+import type { HertzMap, RunBenchOptions } from './bench.model.js'
 
 /**
  * Wraps `runBench` in `runScript` for convenience, so it can be run in top-level without `await`.

@@ -1,18 +1,19 @@
 /*
 
-yarn tsn cannonPost.bench
+yarn tsx scripts/cannonPost.bench
 
  */
 
 import http from 'node:http'
 import { runScript } from '@naturalcycles/nodejs-lib'
-import { runCannon } from '../src'
+import { runCannon } from '../src/index.js'
 
 runScript(async () => {
   await runCannon(
     {
       '01-post': async () => {
-        const app = require('express')()
+        const { default: express } = await import('express')
+        const app = express()
         app.disable('etag')
         app.disable('x-powered-by')
         app.post('/hello', (_req: any, res: any) => res.json({ ok: true }))

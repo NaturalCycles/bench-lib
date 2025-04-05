@@ -1,10 +1,10 @@
 /*
 
-yarn tsn demoBench
+yarn tsx scripts/demoBench.ts
 
  */
 
-import { runBenchScript } from '../src'
+import { runBenchScript } from '../src/index.js'
 
 runBenchScript({
   fns: {

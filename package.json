@@ -1,5 +1,6 @@
 {
   "name": "@naturalcycles/bench-lib",
+  "type": "module",
   "scripts": {
     "prepare": "husky",
     "build": "dev-lib build",
@@ -15,14 +16,17 @@
     "benchmark": "^2"
   },
   "devDependencies": {
-    "@naturalcycles/dev-lib": "^15",
+    "@naturalcycles/dev-lib": "^17",
     "@types/benchmark": "^2",
+    "@types/cors": "^2",
     "@types/express": "^5",
     "@types/node": "^22",
-    "express": "^4",
+    "@vitest/coverage-v8": "^3",
+    "express": "^5",
     "fastify": "^5",
     "helmet": "^8",
-    "jest": "^29"
+    "tsx": "^4",
+    "vitest": "^3"
   },
   "files": [
     "dist"

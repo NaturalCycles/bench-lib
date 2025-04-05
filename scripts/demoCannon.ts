@@ -1,11 +1,11 @@
 /*
 
-yarn tsn demoCannon
+yarn tsx scripts/demoCannon.ts
 
  */
 
 import { _randomInt, pDelay } from '@naturalcycles/js-lib'
-import { expressFunctionFactory, runCannonScript } from '../src'
+import { expressFunctionFactory, runCannonScript } from '../src/index.js'
 
 runCannonScript(
   {
