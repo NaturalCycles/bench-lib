@@ -10,13 +10,13 @@
     "lbt": "dev-lib lbt"
   },
   "dependencies": {
-    "@naturalcycles/js-lib": "^14",
-    "@naturalcycles/nodejs-lib": "^13",
+    "@naturalcycles/js-lib": "^15",
+    "@naturalcycles/nodejs-lib": "^14",
     "autocannon": "^8",
     "benchmark": "^2"
   },
   "devDependencies": {
-    "@naturalcycles/dev-lib": "^17",
+    "@naturalcycles/dev-lib": "^18",
     "@types/benchmark": "^2",
     "@types/cors": "^2",
     "@types/express": "^5",
